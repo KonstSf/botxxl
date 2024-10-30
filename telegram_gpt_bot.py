@@ -23,14 +23,14 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
 
     # Запрос к OpenAI API с указанием ID ассистента
-    response = openai.ChatCompletion.create(
+    response = await openai.ChatCompletion.acreate(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": user_message}],
-        user=ASSISTANT_ID  # Указание ID ассистента, если требуется
+        messages=[{"role": "user", "content": user_message}]
     )
-    bot_reply = response.choices[0].message['content']
+    bot_reply = response['choices'][0]['message']['content']
 
     await update.message.reply_text(bot_reply)
+
 
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
