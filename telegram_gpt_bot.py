@@ -12,7 +12,7 @@ import os
 # Настройки
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-ASSISTANT_ID = "ВАШ_ASSISTANT_ID"  # Замените на ID вашего ассистента
+ASSISTANT_ID = "asst_Qt2LiaThdIuNbFFUT4HruyYZ"  # Замените на ID вашего ассистента
 
 openai.api_key = OPENAI_API_KEY
 
