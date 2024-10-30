@@ -39,5 +39,11 @@ if __name__ == "__main__":
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     # Запуск приложения с использованием Webhook или Polling в зависимости от конфигурации
-    app.run_polling()
+   app.run_webhook(
+    listen="0.0.0.0",
+    port=int(os.environ.get("PORT", 8443)),
+    url_path=TELEGRAM_TOKEN,
+    webhook_url=f"https://ximichkabotxxl.onrender.com/{TELEGRAM_TOKEN}"  # Убедитесь, что URL правильный
+)
+
 
