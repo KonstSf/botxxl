@@ -23,8 +23,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
 
     # Запрос к OpenAI API с указанием ID ассистента
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # Или модель, связанная с вашим ассистентом
+    response = await openai.ChatCompletion.acreate(
+        model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": user_message}],
         user=ASSISTANT_ID  # Указание ID ассистента
     )
@@ -38,5 +38,6 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
+    # Запуск приложения с использованием Webhook или Polling в зависимости от конфигурации
     app.run_polling()
 
