@@ -22,11 +22,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
 
-    # Обновленный запрос к OpenAI API
-    response = openai.Chat.create(
+    # Запрос к OpenAI API с указанием ID ассистента
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": user_message}],
-        user=ASSISTANT_ID
+        user=ASSISTANT_ID  # Указание ID ассистента, если требуется
     )
     bot_reply = response.choices[0].message['content']
 
